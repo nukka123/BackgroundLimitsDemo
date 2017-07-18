@@ -56,7 +56,7 @@ public class NotificationHelper {
                 .build();
     }
 
-    public int getReqestId(){
+    public int getRequestId(){
         return 100;
     }
 }

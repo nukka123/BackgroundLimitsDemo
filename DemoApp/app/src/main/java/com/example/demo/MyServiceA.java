@@ -118,7 +118,7 @@ public class MyServiceA extends Service {
         Timber.d("startForeground");
         NotificationHelper helper = NotificationHelper.of(this);
         Notification noti = helper.newForegroundNoti(this);
-        startForeground(helper.getReqestId(), noti);
+        startForeground(helper.getRequestId(), noti);
     }
 
     class Wait00sTask extends AsyncTask<Void, Void, Void> {
