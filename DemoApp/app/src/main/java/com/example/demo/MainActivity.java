@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     void onClickButtonA03Background() {
         Intent intent = MyServiceA.newIntent(this, 3);
         startService(intent);
+        finish();
     }
 
 
