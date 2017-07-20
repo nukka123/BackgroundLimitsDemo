@@ -35,6 +35,12 @@ public class MyServiceA extends Service {
     }
 
     @Override
+    public void onCreate() {
+        Timber.d("onCreate");
+        super.onCreate();
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Timber.d("onStartCommand: intent=%s, flags=%d, startId=%d", intent, flags, startId);
 
@@ -76,23 +82,24 @@ public class MyServiceA extends Service {
         return START_NOT_STICKY;
     }
 
-    // Fail, if started by startForegroundService().
-    // ANR.
+    // Fail.
+    // if started by startForegroundService(), ANR will occur.
     int onStartCommand01(Intent intent) {
         Timber.d("onStartCommand01");
         new Wait10sTask().execute();
         return START_NOT_STICKY;
     }
 
-    // Fail, if started by startForegroundService().
-    // Bringing down service while still waiting for start foreground.
+    // Fail.
+    // if started by startForegroundService(), Exception will occur.
     int onStartCommand02(Intent intent) {
         Timber.d("onStartCommand02");
         new Wait00sTask().execute();
         return START_NOT_STICKY;
     }
 
-    // Fail, if started by startService() from UI, and finished all Activities.
+    // Fail.
+    // if there is no Activity, it will be terminated from the system after 60s.
     int onStartCommand03(Intent intent) {
         Timber.d("onStartCommand03");
         Wait90sTask task = new Wait90sTask();
